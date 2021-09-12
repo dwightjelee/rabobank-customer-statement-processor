@@ -1,8 +1,9 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, Component, Input, OnInit} from '@angular/core';
 
 @Component({
     selector: 'data-table',
-    templateUrl: 'data-table.component.html'
+    templateUrl: 'data-table.component.html',
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 
 export class DataTableComponent implements OnInit {

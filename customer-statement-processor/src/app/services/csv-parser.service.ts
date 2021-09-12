@@ -10,22 +10,6 @@ export class CsvParserService {
     constructor(private http: HttpClient) {
     }
 
-    // public parse(csvFile: File): any {
-    //   const reader = new FileReader();
-    //   reader.readAsText(csvFile, 'utf-8');
-    //
-    //   reader.onload = () => {
-    //     const csvData = reader.result;
-    //     const dataArray = (csvData as string).split(/\r\n|\n/);
-    //     const headersRow = this.getHeaders(dataArray);
-    //
-    //     this.parsed.next({
-    //       headers: headersRow,
-    //       data: this.getDataArray(dataArray.splice(1)),
-    //     } as CsvDataInterface);
-    //   };
-    // }
-
     public loadCsv(): Observable<string> {
         return this.http.get('/assets/data/records.csv',
             {
