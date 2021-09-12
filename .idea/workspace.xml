@@ -2,23 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8bc0dbee-1b92-4f22-9e7f-a5baf604909b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/customer-statement-processor/.prettierrc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/customer-statement-processor/src/app/components/data-table/data-table.component.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/customer-statement-processor/src/app/components/data-table/data-table.component.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/customer-statement-processor/src/app/models/csv-data.interface.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/customer-statement-processor/src/app/services/csv-parser.service.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/customer-statement-processor/src/assets/data/records.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/customer-statement-processor/src/assets/data/records.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/rabobank.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/rabobank.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/customer-statement-processor/.editorconfig" beforeDir="false" afterPath="$PROJECT_DIR$/customer-statement-processor/.editorconfig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/customer-statement-processor/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/customer-statement-processor/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/customer-statement-processor/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/customer-statement-processor/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/customer-statement-processor/src/app/app.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/customer-statement-processor/src/app/app.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/customer-statement-processor/src/app/app.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/customer-statement-processor/src/app/app.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/customer-statement-processor/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/customer-statement-processor/src/app/app.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/customer-statement-processor/src/styles.scss" beforeDir="false" afterPath="$PROJECT_DIR$/customer-statement-processor/src/styles.scss" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -98,7 +86,8 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1631388313102</updated>
-      <workItem from="1631388317047" duration="7751000" />
+      <workItem from="1631388317047" duration="7872000" />
+      <workItem from="1631452798034" duration="1487000" />
     </task>
     <servers />
   </component>
@@ -115,6 +104,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
