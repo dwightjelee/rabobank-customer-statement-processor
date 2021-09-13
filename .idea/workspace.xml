@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8bc0dbee-1b92-4f22-9e7f-a5baf604909b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/customer-statement-processor/src/app/services/csv-parser.service.spec.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/customer-statement-processor/src/app/components/data-table/data-table.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/customer-statement-processor/src/app/components/data-table/data-table.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/customer-statement-processor/src/app/services/csv-parser.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/customer-statement-processor/src/app/services/csv-parser.service.ts" afterDir="false" />
-    </list>
+    <list default="true" id="8bc0dbee-1b92-4f22-9e7f-a5baf604909b" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -39,12 +34,12 @@
               <option name="branches">
                 <list>
                   <RecentBranch>
-                    <option name="branchName" value="RB-03-csv-parser" />
-                    <option name="lastUsedInstant" value="1631388510" />
+                    <option name="branchName" value="main" />
+                    <option name="lastUsedInstant" value="1631485283" />
                   </RecentBranch>
                   <RecentBranch>
-                    <option name="branchName" value="main" />
-                    <option name="lastUsedInstant" value="1631388509" />
+                    <option name="branchName" value="RB-03-csv-parser" />
+                    <option name="lastUsedInstant" value="1631388510" />
                   </RecentBranch>
                 </list>
               </option>
@@ -151,7 +146,7 @@
       <option name="presentableId" value="Default" />
       <updated>1631388313102</updated>
       <workItem from="1631388317047" duration="7872000" />
-      <workItem from="1631452798034" duration="7090000" />
+      <workItem from="1631452798034" duration="7627000" />
     </task>
     <servers />
   </component>

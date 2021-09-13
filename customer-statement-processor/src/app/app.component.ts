@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {CsvParserService} from "./services/csv-parser.service";
 import {CsvDataInterface} from "./models/csv-data.interface";
+import {XmlParserService} from "./services/xml-parser.service";
 
 @Component({
     selector: 'app-root',
@@ -13,7 +14,8 @@ export class AppComponent implements OnInit {
     public headers!: string[];
 
     constructor(
-        private csvParserService: CsvParserService
+        private csvParserService: CsvParserService,
+        private xmlParserService: XmlParserService,
     ) {}
 
     ngOnInit() {

@@ -7,8 +7,7 @@ import {Observable} from "rxjs";
     providedIn: 'root'
 })
 export class CsvParserService {
-    constructor(private http: HttpClient) {
-    }
+    constructor(private http: HttpClient) {}
 
     public loadCsv(): Observable<string> {
         return this.http.get('/assets/data/records.csv',
