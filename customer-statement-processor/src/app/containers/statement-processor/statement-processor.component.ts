@@ -32,9 +32,7 @@ export class StatementProcessorComponent {
                 }
 
                 if (file.type === 'xml') {
-                    this.xmlParserService.parseXmlData(fileReader.result as string).pipe(take(1)).subscribe(result => {
-                        this.generateReport(result, file.name);
-                    });
+                    this.generateReport(this.xmlParserService.parseXmlData(fileReader.result as string), file.name);
                 }
             }
             fileReader.readAsText(file.file);

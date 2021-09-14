@@ -1,7 +1,5 @@
 import {Injectable} from "@angular/core";
-import {from, Observable} from "rxjs";
-import {parseStringPromise} from "xml2js";
-import {map} from "rxjs/operators";
+import {parseString} from "xml2js";
 import {ParsedDataInterface} from "../models/parsed-data.interface";
 import {TransactionInterface} from "../models/transaction.interface";
 
@@ -12,17 +10,17 @@ export class XmlParserService {
     constructor() {
     }
 
-    public parseXmlData(data: string): Observable<ParsedDataInterface> {
-        return from(parseStringPromise(data)).pipe(
-            map(data => {
-                const mappedData: ParsedDataInterface = {
-                    headers: this.getHeaders(data),
-                    data: this.getData(data),
-                };
+    public parseXmlData(data: string): ParsedDataInterface {
+        let mappedData: ParsedDataInterface;
 
-                return mappedData;
-            })
-        ) as Observable<any>;
+        parseString(data, (err: Error, result: string) => {
+            mappedData = {
+                headers: this.getHeaders(result),
+                data: this.getData(result),
+            }
+        });
+
+        return mappedData;
     }
 
     private getHeaders(data): string[] {
@@ -33,7 +31,7 @@ export class XmlParserService {
 
         const keys = Object.keys(data.records.record[0]);
 
-        for(let i=1; i<keys.length; i++) {
+        for (let i = 1; i < keys.length; i++) {
             const words = keys[i].split(/(?=[A-Z])/).join(" ");
             let transformedHeader = words.charAt(0).toUpperCase() + words.substring(1, words.length);
 
