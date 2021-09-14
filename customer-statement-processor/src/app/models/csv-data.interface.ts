@@ -1,4 +1,6 @@
+import {TransactionInterface} from "./transaction.interface";
+
 export interface CsvDataInterface {
     headers: string[];
-    data: object[];
+    data: TransactionInterface[];
 }
