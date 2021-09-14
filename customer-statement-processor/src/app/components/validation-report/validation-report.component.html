@@ -1,0 +1,47 @@
+<div *ngIf="validatedData.data.validTransactions" class="row my-5">
+    <div class="col-12">
+        <h3 class="text-success">
+            <i class="bi bi-check-circle-fill mr-1"></i>
+            Valid transactions
+        </h3>
+    </div>
+    <div class="col-12">
+        <data-table
+            [datasource]="validatedData.data.validTransactions"
+            [displayedColumns]="validatedData.headers"
+        >
+        </data-table>
+    </div>
+</div>
+
+<div *ngIf="validatedData.data.duplicateTransactions" class="row my-5">
+    <div class="col-12">
+        <h3 class="text-danger">
+            <i class="bi bi-exclamation-triangle-fill mr-1"></i>
+            Duplicated references
+        </h3>
+    </div>
+    <div class="col-12">
+        <data-table
+            [datasource]="validatedData.data.duplicateTransactions"
+            [displayedColumns]="validatedData.headers"
+        >
+        </data-table>
+    </div>
+</div>
+
+<div *ngIf="validatedData.data.incorrectMutations" class="row my-5">
+    <div class="col-12">
+        <h3 class="text-danger">
+            <i class="bi bi-exclamation-triangle-fill mr-1"></i>
+            Incorrect mutations
+        </h3>
+    </div>
+    <div class="col-12">
+        <data-table
+            [datasource]="validatedData.data.incorrectMutations"
+            [displayedColumns]="validatedData.headers"
+        >
+        </data-table>
+    </div>
+</div>

@@ -1,0 +1,38 @@
+<ngx-file-drop
+    (onFileDrop)="fileDrop($event)"
+    (onFileLeave)="setDropzoneState(false)"
+    (onFileOver)="setDropzoneState(true)"
+    [directory]="false"
+    accept="{{acceptedExtensions}}"
+    dropZoneClassName="d-block border {{dropzoneClass}} border-dashed rounded p-3 bg-dimmed-50"
+    dropZoneLabel="Drag & drop your customer statement files to validate"
+>
+    <ng-template let-openFileSelector="openFileSelector" ngx-file-drop-content-tmp>
+        <div class="text-center">
+            <p class="text-dimmed-700">
+                Drag & drop your customer statement CSV and XML files to validate <br/>OR<br/>
+                <button (click)="openFileSelector()" color="primary" mat-stroked-button><i class="bi bi-file-earmark-arrow-up"></i> click here</button>
+            </p>
+        </div>
+    </ng-template>
+</ngx-file-drop>
+
+<mat-list class="w-100">
+    <mat-list-item *ngFor="let file of droppedFiles$ | async" class="w-100 container-fluid p-0">
+        <button (click)="removeFile(file)" class="text-danger" mat-icon-button>
+            <i class="bi bi-trash"></i>
+        </button>
+
+        <i *ngIf="!file.allowedSize" class="bi bi-file-earmark-x-fill text-danger"
+           matTooltip="File may not exceed 10MB"></i>
+
+        <span [ngClass]="{'text-dimmed-500': !file.allowedSize}">{{file.name}} <smalL>{{file.size | readableBytesize}}</smalL></span>
+    </mat-list-item>
+</mat-list>
+
+<div *ngIf="invalidExtensions" class="alert alert-danger" role="alert">
+    <strong>Invalid file-format</strong>
+    {{ invalidExtensions }}
+</div>
+
+<button (click)="submit()" color="primary" mat-raised-button>Validate files</button>
