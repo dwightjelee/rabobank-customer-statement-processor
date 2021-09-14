@@ -7,6 +7,10 @@
         </div>
 
         <div class="row my-5">
+            <upload (submitUploadFiles)="onSubmitUploadFiles($event)"></upload>
+        </div>
+
+        <div class="row my-5" *ngIf="validTransactions">
             <div class="col-12">
                 <h3>Valide transacties</h3>
             </div>

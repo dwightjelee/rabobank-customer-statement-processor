@@ -7,11 +7,19 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {HttpClientModule} from "@angular/common/http";
 import {DataTableComponent} from "./components/data-table/data-table.component";
 import {MatTableModule} from "@angular/material/table";
+import {UploadComponent} from "./components/upload/upload.component";
+import {NgxFileDropModule} from "ngx-file-drop";
+import {MatListModule} from "@angular/material/list";
+import {MatButtonModule} from "@angular/material/button";
+import {MatTooltipModule} from "@angular/material/tooltip";
+import {ReadableBytesizePipe} from "./pipes/readable-bytesize.pipe";
 
 @NgModule({
     declarations: [
         AppComponent,
         DataTableComponent,
+        UploadComponent,
+        ReadableBytesizePipe,
     ],
     imports: [
         BrowserModule,
@@ -19,6 +27,10 @@ import {MatTableModule} from "@angular/material/table";
         HttpClientModule,
         BrowserAnimationsModule,
         MatTableModule,
+        NgxFileDropModule,
+        MatListModule,
+        MatButtonModule,
+        MatTooltipModule,
     ],
     providers: [],
     bootstrap: [AppComponent]
