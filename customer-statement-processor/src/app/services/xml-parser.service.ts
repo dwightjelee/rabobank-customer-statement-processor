@@ -1,7 +1,7 @@
 import {Injectable} from "@angular/core";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {Observable} from "rxjs";
-import * as xml2js from 'xml2js';
+import {from, Observable} from "rxjs";
+import {parseStringPromise} from "xml2js";
 
 @Injectable({
     providedIn: 'root'
@@ -20,17 +20,8 @@ export class XmlParserService {
             });
     }
 
-    public parseXmlData(data: string): any {
-        let key: string | number;
-        let arr = [];
-        const parser = new xml2js.Parser();
-        // const temp = new xml2js.Parser({});
-        // const xml2js = require('xml2js');
-
-        parser.parseString(data, function (err: any, result: any) {
-            if(err) console.log(err);
-            console.log(result);
-        });
+    public parseXmlData(data: string): Observable<any> {
+        return from(parseStringPromise(data)) as Observable<any>;
 
         // const parser = new xml2js.parseString(data, (err: any, result: JSON) => {
         //     console.log(result);

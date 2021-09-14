@@ -16,7 +16,8 @@ export class AppComponent implements OnInit {
     constructor(
         private csvParserService: CsvParserService,
         private xmlParserService: XmlParserService,
-    ) {}
+    ) {
+    }
 
     ngOnInit() {
         this.csvParserService.loadCsv().subscribe((csvData: string) => {
@@ -24,5 +25,7 @@ export class AppComponent implements OnInit {
             this.datasource = parsedData.data;
             this.headers = parsedData.headers;
         });
+
+        this.xmlParserService.loadXml().subscribe(data => this.xmlParserService.parseXmlData(data).subscribe(result => console.log(result.records.record)));
     }
 }
