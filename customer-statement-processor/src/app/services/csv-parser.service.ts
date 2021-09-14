@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {CsvDataInterface} from "../models/csv-data.interface";
 import {Observable} from "rxjs";
+import {TransactionInterface} from "../models/transaction.interface";
 
 @Injectable({
     providedIn: 'root'
@@ -33,15 +34,25 @@ export class CsvParserService {
         return csvData[0].split(',');
     }
 
-    private getData(csvData: string[]): object[] {
+    private getData(csvData: string[]): TransactionInterface[] {
         const properties = csvData[0].split(',');
-        const result: object[] = [];
+        const cleanedData = csvData.filter((str) => {return str;});
 
-        for (const currentRow of csvData.splice(1)) {
-            const rowData = currentRow
+        const result: TransactionInterface[] = [];
+
+        for (const currentRow of cleanedData.splice(1)) {
+            const rowData: TransactionInterface[] = currentRow
                 .split('","')
-                .map((value) => {
-                    const obj: {[key: string]: string} = {};
+                .map((value: string) => {
+
+                    const obj: TransactionInterface = {
+                        Reference: '',
+                        "Account Number": '',
+                        Description: '',
+                        "Start Balance": '',
+                        Mutation: '',
+                        "End Balance": '',
+                    };
 
                     for (const [index, header] of properties.entries()) {
                         obj[header] = value.split(',')[index]

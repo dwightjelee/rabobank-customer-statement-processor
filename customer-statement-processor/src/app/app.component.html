@@ -8,9 +8,40 @@
 
         <div class="row my-5">
             <div class="col-12">
+                <h3>Valide transacties</h3>
+            </div>
+            <div class="col-12">
                 <data-table
-                    *ngIf="!!datasource"
-                    [datasource]="datasource"
+                    *ngIf="!!validTransactions"
+                    [datasource]="validTransactions"
+                    [displayedColumns]="headers"
+                >
+                </data-table>
+            </div>
+        </div>
+
+        <div class="row my-5" *ngIf="duplicateTransactions">
+            <div class="col-12">
+                <h3>Incorrecte referenties</h3>
+            </div>
+            <div class="col-12">
+                <data-table
+                    *ngIf="!!duplicateTransactions"
+                    [datasource]="duplicateTransactions"
+                    [displayedColumns]="['Reference','Description']"
+                >
+                </data-table>
+            </div>
+        </div>
+
+        <div class="row my-5" *ngIf="incorrectMutations">
+            <div class="col-12">
+                <h3>Incorrecte mutaties</h3>
+            </div>
+            <div class="col-12">
+                <data-table
+                    *ngIf="!!incorrectMutations"
+                    [datasource]="incorrectMutations"
                     [displayedColumns]="headers"
                 >
                 </data-table>

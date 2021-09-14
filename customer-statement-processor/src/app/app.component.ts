@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {CsvParserService} from "./services/csv-parser.service";
 import {CsvDataInterface} from "./models/csv-data.interface";
 import {TransactionValidatorService} from "./services/transaction-validator.service";
+import {TransactionInterface} from "./models/transaction.interface";
 
 @Component({
     selector: 'app-root',
@@ -10,8 +11,11 @@ import {TransactionValidatorService} from "./services/transaction-validator.serv
 })
 export class AppComponent implements OnInit {
     public title = 'customer-statement-processor';
-    public datasource: any | undefined;
+
     public headers!: string[];
+    public validTransactions: TransactionInterface[];
+    public duplicateTransactions: TransactionInterface[];
+    public incorrectMutations: TransactionInterface[];
 
     constructor(
         private csvParserService: CsvParserService,
@@ -21,10 +25,13 @@ export class AppComponent implements OnInit {
     ngOnInit() {
         this.csvParserService.loadCsv().subscribe((csvData: string) => {
             const parsedData: CsvDataInterface = this.csvParserService.parseCsvData(csvData);
-            this.datasource = parsedData.data;
             this.headers = parsedData.headers;
 
-            this.transactionValidatorService.validate(parsedData.data);
+            this.transactionValidatorService.validate(parsedData.data).subscribe((data) => {
+                this.validTransactions = data.validTransactions;
+                this.duplicateTransactions = data.duplicateTransActions;
+                this.incorrectMutations = data.incorrectMutations;
+            });
         });
     }
 }
