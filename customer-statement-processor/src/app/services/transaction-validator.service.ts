@@ -1,18 +1,13 @@
 import {Injectable} from "@angular/core";
 import {TransactionInterface} from "../models/transaction.interface";
 import {Observable, of} from "rxjs";
-
-export interface returntypes {
-    validTransactions: TransactionInterface[];
-    duplicateTransActions: TransactionInterface[];
-    incorrectMutations: TransactionInterface[];
-}
+import {ValidationResultsInterface} from "../models/validation-results.interface";
 
 @Injectable({
     providedIn: 'root'
 })
 export class TransactionValidatorService {
-    public validate(data: TransactionInterface[]): Observable<returntypes> {
+    public validate(data: TransactionInterface[]): Observable<ValidationResultsInterface> {
         const lookupReference = data.reduce((a, e) => {
             a[e.Reference] = ++a[e.Reference] || 0;
             return a;
@@ -44,7 +39,7 @@ export class TransactionValidatorService {
 
         return of({
             validTransactions: uniqueTransactions,
-            duplicateTransActions: duplicateTransactions,
+            duplicateTransactions: duplicateTransactions,
             incorrectMutations: incorrectMutations.length > 0 ? incorrectMutations : null
         });
     }

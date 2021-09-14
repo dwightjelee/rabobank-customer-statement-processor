@@ -13,6 +13,9 @@ import {MatListModule} from "@angular/material/list";
 import {MatButtonModule} from "@angular/material/button";
 import {MatTooltipModule} from "@angular/material/tooltip";
 import {ReadableBytesizePipe} from "./pipes/readable-bytesize.pipe";
+import {StatementProcessorComponent} from "./containers/statement-processor/statement-processor.component";
+import {ValidationReportComponent} from "./components/validation-report/validation-report.component";
+import {MatExpansionModule} from "@angular/material/expansion";
 
 @NgModule({
     declarations: [
@@ -20,6 +23,8 @@ import {ReadableBytesizePipe} from "./pipes/readable-bytesize.pipe";
         DataTableComponent,
         UploadComponent,
         ReadableBytesizePipe,
+        StatementProcessorComponent,
+        ValidationReportComponent,
     ],
     imports: [
         BrowserModule,
@@ -31,6 +36,7 @@ import {ReadableBytesizePipe} from "./pipes/readable-bytesize.pipe";
         MatListModule,
         MatButtonModule,
         MatTooltipModule,
+        MatExpansionModule,
     ],
     providers: [],
     bootstrap: [AppComponent]

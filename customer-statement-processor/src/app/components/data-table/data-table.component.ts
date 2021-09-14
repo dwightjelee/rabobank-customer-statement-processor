@@ -11,7 +11,7 @@ export class DataTableComponent implements OnInit {
     datasource: any;
 
     @Input()
-    displayedColumns!: string[];
+    displayedColumns: string[];
 
     constructor() {
     }

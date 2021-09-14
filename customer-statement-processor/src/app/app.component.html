@@ -2,54 +2,10 @@
     <div class="d-flex flex-column h-100">
         <div class="row">
             <div class="col-12">
-                <h1 class="m-0">Rabobank assessment</h1>
+                <h1 class="m-0">Rabobank Customer Statement Processor</h1>
             </div>
         </div>
 
-        <div class="row my-5">
-            <upload (submitUploadFiles)="onSubmitUploadFiles($event)"></upload>
-        </div>
-
-        <div class="row my-5" *ngIf="validTransactions">
-            <div class="col-12">
-                <h3>Valide transacties</h3>
-            </div>
-            <div class="col-12">
-                <data-table
-                    *ngIf="!!validTransactions"
-                    [datasource]="validTransactions"
-                    [displayedColumns]="headers"
-                >
-                </data-table>
-            </div>
-        </div>
-
-        <div class="row my-5" *ngIf="duplicateTransactions">
-            <div class="col-12">
-                <h3>Incorrecte referenties</h3>
-            </div>
-            <div class="col-12">
-                <data-table
-                    *ngIf="!!duplicateTransactions"
-                    [datasource]="duplicateTransactions"
-                    [displayedColumns]="['Reference','Description']"
-                >
-                </data-table>
-            </div>
-        </div>
-
-        <div class="row my-5" *ngIf="incorrectMutations">
-            <div class="col-12">
-                <h3>Incorrecte mutaties</h3>
-            </div>
-            <div class="col-12">
-                <data-table
-                    *ngIf="!!incorrectMutations"
-                    [datasource]="incorrectMutations"
-                    [displayedColumns]="headers"
-                >
-                </data-table>
-            </div>
-        </div>
+        <statement-processor></statement-processor>
     </div>
 </div>
