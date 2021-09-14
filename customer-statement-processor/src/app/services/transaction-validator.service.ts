@@ -8,7 +8,7 @@ import {ValidationResultsInterface} from "../models/validation-results.interface
 })
 export class TransactionValidatorService {
     public validate(data: TransactionInterface[]): Observable<ValidationResultsInterface> {
-        const lookupReference = data.reduce((a, e) => {
+        const lookupReference = data.reduce((a: {}, e: TransactionInterface) => {
             a[e.Reference] = ++a[e.Reference] || 0;
             return a;
         }, {});
@@ -39,7 +39,7 @@ export class TransactionValidatorService {
 
         return of({
             validTransactions: uniqueTransactions,
-            duplicateTransactions: duplicateTransactions,
+            duplicateTransactions: duplicateTransactions.length > 0 ? duplicateTransactions : null,
             incorrectMutations: incorrectMutations.length > 0 ? incorrectMutations : null
         });
     }

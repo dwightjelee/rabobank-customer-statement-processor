@@ -1,24 +1,28 @@
-<div class="row my-5">
+<div class="row my-5" *ngIf="!reports.length">
     <upload (submitUploadFiles)="onSubmitUploadFiles($event)"></upload>
 </div>
 
-<mat-accordion class="example-headers-align">
-    <mat-expansion-panel *ngFor="let report of reports">
-        <mat-expansion-panel-header>
-            <mat-panel-title>
-                {{ report.fileName }}
-            </mat-panel-title>
-            <mat-panel-description>
-                <div class="d-inline-block px-2">
-                    <i class="bi bi-check-circle-fill mr-1 text-success"></i>
-                    {{ report.data.validTransactions.length }} valid,
-                </div>
-                <div class="d-inline-block">
-                    <i class="bi bi-exclamation-triangle-fill mr-1 text-danger"></i>
-                    {{ report.data.incorrectMutations?.length + report.data.duplicateTransactions?.length }} errors
-                </div>
-            </mat-panel-description>
-        </mat-expansion-panel-header>
-        <validation-report [validatedData]="report"></validation-report>
-    </mat-expansion-panel>
-</mat-accordion>
+<div class="row my-5">
+    <mat-accordion *ngIf="reports.length">
+        <mat-expansion-panel *ngFor="let report of reports">
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    {{ report.fileName }}
+                </mat-panel-title>
+                <mat-panel-description>
+                    <div class="w-100 text-end">
+                        <div class="d-inline-block px-2">
+                            <i class="bi bi-check-circle-fill mr-1 text-success"></i>
+                            {{ report.data.validTransactions.length }} valid,
+                        </div>
+                        <div class="d-inline-block">
+                            <i class="bi bi-exclamation-triangle-fill mr-1 text-danger"></i>
+                            {{ report.data.incorrectMutations?.length + report.data.duplicateTransactions?.length }} errors
+                        </div>
+                    </div>
+                </mat-panel-description>
+            </mat-expansion-panel-header>
+            <validation-report [validatedData]="report"></validation-report>
+        </mat-expansion-panel>
+    </mat-accordion>
+</div>

@@ -1,6 +1,6 @@
 import {CsvParserService} from "./csv-parser.service";
-import {createHttpFactory, HttpMethod, SpectatorHttp} from "@ngneat/spectator";
-import {CsvDataInterface} from "../models/csv-data.interface";
+import {createServiceFactory, SpectatorService} from "@ngneat/spectator";
+import {ParsedDataInterface} from "../models/parsed-data.interface";
 
 const mockCsvData: string = `Reference,Account Number,Description,Start Balance,Mutation,End Balance
         1,NL01RABO1234567891,Description1,10,-1,9
@@ -9,8 +9,8 @@ const mockCsvData: string = `Reference,Account Number,Description,Start Balance,
         4,NL01RABO1234567894,Description1,40,-4,36`;
 
 describe('CsvParserService', () => {
-    let spectator: SpectatorHttp<CsvParserService>;
-    const createService = createHttpFactory(CsvParserService);
+    let spectator: SpectatorService<CsvParserService>;
+    const createService = createServiceFactory(CsvParserService);
 
     beforeEach(() => spectator = createService());
 
@@ -18,22 +18,15 @@ describe('CsvParserService', () => {
         expect(spectator.service).toBeTruthy();
     });
 
-    describe('loadCsv method', () => {
-        it('load CSV-file and return data as an object', () => {
-            spectator.service.loadCsv().subscribe();
-            spectator.expectOne('/assets/data/records.csv', HttpMethod.GET);
-        });
-    });
-
-    describe('parseCsvData method', () =>{
+    describe('parseCsvData method', () => {
         it('should return an object containing headers and data', () => {
             const headerSpy = spyOn<any>(spectator.service, 'getHeaders').and.callThrough();
             const dataSpy = spyOn<any>(spectator.service, 'getData').and.callThrough();
 
-            const parsedData: CsvDataInterface = spectator.service.parseCsvData(mockCsvData);
+            const parsedData: ParsedDataInterface = spectator.service.parseCsvData(mockCsvData);
             expect(headerSpy).toHaveBeenCalled();
             expect(dataSpy).toHaveBeenCalled();
-            expect(parsedData.headers.length).toBe(6) ;
+            expect(parsedData.headers.length).toBe(6);
             expect(parsedData.data.length).toBe(4);
         });
     });

@@ -6,7 +6,7 @@ import {ChangeDetectionStrategy, Component, Input, OnInit} from '@angular/core';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 
-export class DataTableComponent implements OnInit {
+export class DataTableComponent {
     @Input()
     datasource: any;
 
@@ -14,9 +14,5 @@ export class DataTableComponent implements OnInit {
     displayedColumns: string[];
 
     constructor() {
-    }
-
-    ngOnInit() {
-
     }
 }

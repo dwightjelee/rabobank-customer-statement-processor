@@ -1,40 +1,65 @@
 import {Injectable} from "@angular/core";
-import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {from, Observable} from "rxjs";
 import {parseStringPromise} from "xml2js";
+import {map} from "rxjs/operators";
+import {ParsedDataInterface} from "../models/parsed-data.interface";
+import {TransactionInterface} from "../models/transaction.interface";
 
 @Injectable({
     providedIn: 'root'
 })
 export class XmlParserService {
-    constructor(private http: HttpClient) {
+    constructor() {
     }
 
-    public loadXml(): Observable<string> {
-        return this.http.get('/assets/data/records.xml',
-            {
-                headers: new HttpHeaders()
-                    .set('Content-Type', 'text/xml')
-                    .append('Access-Control-Allow-Methods', 'GET'),
-                responseType: 'text'
-            });
+    public parseXmlData(data: string): Observable<ParsedDataInterface> {
+        return from(parseStringPromise(data)).pipe(
+            map(data => {
+                const mappedData: ParsedDataInterface = {
+                    headers: this.getHeaders(data),
+                    data: this.getData(data),
+                };
+
+                return mappedData;
+            })
+        ) as Observable<any>;
     }
 
-    public parseXmlData(data: string): Observable<any> {
-        return from(parseStringPromise(data)) as Observable<any>;
+    private getHeaders(data): string[] {
+        let headers: string[] = [];
 
-        // const parser = new xml2js.parseString(data, (err: any, result: JSON) => {
-        //     console.log(result);
-        //
-        //     // for (key in obj.emp) {
-        //     //     var item = obj.emp[k];
-        //     //     arr.push({
-        //     //         id: item.id[0],
-        //     //         name: item.name[0],
-        //     //         gender: item.gender[0],
-        //     //         mobile: item.mobile[0]
-        //     //     });
-        //     // }
-        // });
+        const firstHeader = Object.keys(data.records.record[0].$)[0];
+        headers.push(firstHeader.charAt(0).toUpperCase() + firstHeader.substring(1, firstHeader.length));
+
+        const keys = Object.keys(data.records.record[0]);
+
+        for(let i=1; i<keys.length; i++) {
+            const words = keys[i].split(/(?=[A-Z])/).join(" ");
+            let transformedHeader = words.charAt(0).toUpperCase() + words.substring(1, words.length);
+
+            headers.push(transformedHeader);
+        }
+
+        return headers;
+    }
+
+    private getData(data): TransactionInterface[] {
+        const result: TransactionInterface[] = [];
+        const rows = data.records.record;
+
+        for (const currentRow of rows) {
+            const transaction: TransactionInterface = {
+                Reference: currentRow.$.reference,
+                "Account Number": currentRow.accountNumber[0],
+                Description: currentRow.description[0],
+                "Start Balance": currentRow.startBalance[0],
+                Mutation: currentRow.mutation[0],
+                "End Balance": currentRow.endBalance[0],
+            }
+
+            result.push(transaction);
+        }
+
+        return result;
     }
 }

@@ -1,12 +1,12 @@
-<h2>{{ validatedData.fileName }}</h2>
-
 <div *ngIf="validatedData.data.validTransactions" class="row my-5">
     <div class="col-12">
-        <h3>Valid transactions</h3>
+        <h3 class="text-success">
+            <i class="bi bi-check-circle-fill mr-1"></i>
+            Valid transactions
+        </h3>
     </div>
     <div class="col-12">
         <data-table
-            *ngIf="!!validatedData.data.validTransactions"
             [datasource]="validatedData.data.validTransactions"
             [displayedColumns]="validatedData.headers"
         >
@@ -16,11 +16,13 @@
 
 <div *ngIf="validatedData.data.duplicateTransactions" class="row my-5">
     <div class="col-12">
-        <h3>Duplicated references</h3>
+        <h3 class="text-danger">
+            <i class="bi bi-exclamation-triangle-fill mr-1"></i>
+            Duplicated references
+        </h3>
     </div>
     <div class="col-12">
         <data-table
-            *ngIf="!!validatedData.data.duplicateTransactions"
             [datasource]="validatedData.data.duplicateTransactions"
             [displayedColumns]="validatedData.headers"
         >
@@ -30,11 +32,13 @@
 
 <div *ngIf="validatedData.data.incorrectMutations" class="row my-5">
     <div class="col-12">
-        <h3>Incorrect mutations</h3>
+        <h3 class="text-danger">
+            <i class="bi bi-exclamation-triangle-fill mr-1"></i>
+            Incorrect mutations
+        </h3>
     </div>
     <div class="col-12">
         <data-table
-            *ngIf="!!validatedData.data.incorrectMutations"
             [datasource]="validatedData.data.incorrectMutations"
             [displayedColumns]="validatedData.headers"
         >

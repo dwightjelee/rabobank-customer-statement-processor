@@ -1,26 +1,15 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {CsvDataInterface} from "../models/csv-data.interface";
-import {Observable} from "rxjs";
+import {ParsedDataInterface} from "../models/parsed-data.interface";
 import {TransactionInterface} from "../models/transaction.interface";
 
 @Injectable({
     providedIn: 'root'
 })
 export class CsvParserService {
-    constructor(private http: HttpClient) {}
-
-    public loadCsv(): Observable<string> {
-        return this.http.get('/assets/data/records.csv',
-            {
-                headers: new HttpHeaders()
-                    .set('Content-Type', 'text/csv')
-                    .append('Access-Control-Allow-Methods', 'GET'),
-                responseType: 'text'
-            });
+    constructor() {
     }
 
-    public parseCsvData(data: string): CsvDataInterface {
+    public parseCsvData(data: string): ParsedDataInterface {
         const splittedData = data.split(/\r\n|\n/);
 
         return {
@@ -35,7 +24,9 @@ export class CsvParserService {
 
     private getData(csvData: string[]): TransactionInterface[] {
         const properties = csvData[0].split(',');
-        const cleanedData = csvData.filter((str) => {return str;});
+        const cleanedData = csvData.filter((str: string) => {
+            return str;
+        });
 
         const result: TransactionInterface[] = [];
 
