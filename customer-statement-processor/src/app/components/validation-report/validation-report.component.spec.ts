@@ -1,4 +1,4 @@
-import {createComponentFactory, Spectator} from "@ngneat/spectator";
+import {byTestId, createComponentFactory, Spectator} from "@ngneat/spectator";
 import {ValidationReportComponent} from "./validation-report.component";
 import {MockComponent} from "ng-mocks";
 import {DataTableComponent} from "../data-table/data-table.component";
@@ -28,7 +28,7 @@ describe('ValidationReportComponent', () => {
                             'End Balance': '9'
                         },
                     ],
-                    duplicateTransactions: [],
+                    duplicateTransactions: null,
                     incorrectMutations: [],
                 }
             }
@@ -36,6 +36,9 @@ describe('ValidationReportComponent', () => {
     }));
 
     it('should create', () => {
+        const dataTables = spectator.queryAll(byTestId('reportTable'));
+
         expect(spectator.component).toBeTruthy();
+        expect(dataTables.length).toBe(2);
     });
 });
