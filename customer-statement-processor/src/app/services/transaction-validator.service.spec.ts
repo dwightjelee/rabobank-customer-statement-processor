@@ -33,8 +33,8 @@ const mockXmlDataResult: TransactionInterface[] = [
         'Account Number': 'NL01RABO1234567894',
         Description: 'Description 4',
         'Start Balance': '40',
-        Mutation: '-4',
-        'End Balance': '38',
+        Mutation: '+4',
+        'End Balance': '46',
     },
 ];
 
