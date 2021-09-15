@@ -23,7 +23,12 @@ export class StatementProcessorComponent {
     ) {
     }
 
-    public onSubmitUploadFiles(uploadedFiles: UploadedFile[]) {
+    /**
+     * Takes uploaded files and read it's contents,
+     * sends it to generateReport
+     * @param uploadedFiles
+     */
+    public onSubmitUploadFiles(uploadedFiles: UploadedFile[]): void {
         uploadedFiles.forEach((file: UploadedFile) => {
             let fileReader = new FileReader();
             fileReader.onload = () => {
@@ -39,7 +44,15 @@ export class StatementProcessorComponent {
         })
     }
 
-    private generateReport(parsedData: ParsedDataInterface, fileName: string) {
+    /**
+     * Takes parsed data and filename,
+     * calls TransactionValidatorService to validate the data
+     * and shows reports
+     * @param parsedData
+     * @param fileName
+     * @private
+     */
+    private generateReport(parsedData: ParsedDataInterface, fileName: string): void {
         this.transactionValidatorService.validate(parsedData.data).pipe(take(1)).subscribe((data: ValidationResultsInterface) => {
             this.reports.push({
                 fileName,

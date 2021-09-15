@@ -4,6 +4,13 @@ import { Pipe, PipeTransform } from '@angular/core';
     name: 'readableBytesize',
 })
 export class ReadableBytesizePipe implements PipeTransform {
+
+    /**
+     * Transforms bytes to a string and converts bytes
+     * to Bytes, KB, MB, GB accordingly
+     * @param bytes
+     * @returns string
+     */
     transform(bytes: number): string {
         const sizes = ['Bytes', 'KB', 'MB', 'GB'];
         if (!!bytes) {

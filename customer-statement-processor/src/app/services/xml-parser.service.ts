@@ -10,6 +10,12 @@ export class XmlParserService {
     constructor() {
     }
 
+    /**
+     * Takes xml data as string and converts it to an object
+     * with headers and data
+     * @param data xml data
+     * @returns ParsedDataInterface
+     */
     public parseXmlData(data: string): ParsedDataInterface {
         let mappedData: ParsedDataInterface;
 
@@ -23,6 +29,13 @@ export class XmlParserService {
         return mappedData;
     }
 
+    /**
+     * Takes xml-data and returns the keys
+     * as headers
+     * @param data xml data
+     * @returns string[] array of headers
+     * @private
+     */
     private getHeaders(data): string[] {
         let headers: string[] = [];
 
@@ -41,6 +54,13 @@ export class XmlParserService {
         return headers;
     }
 
+    /**
+     * Takes xml-data and converts all xml-elements
+     * to TransactionInterface objects
+     * @param data
+     * @returns TransactionInterface[]
+     * @private
+     */
     private getData(data): TransactionInterface[] {
         const result: TransactionInterface[] = [];
         const rows = data.records.record;

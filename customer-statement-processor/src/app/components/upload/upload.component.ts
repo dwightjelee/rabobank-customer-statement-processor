@@ -28,6 +28,9 @@ export class UploadComponent implements OnInit {
     constructor() {
     }
 
+    /**
+     * Set subscriptions
+     */
     public ngOnInit(): void {
         this.droppedFiles$ = this.droppedFilesSubject.asObservable();
         this.subscriptions.push(
@@ -37,20 +40,35 @@ export class UploadComponent implements OnInit {
         );
     }
 
+    /**
+     * Remove all subscriptions on destroy
+     */
     public ngOnDestroy(): void {
         this.subscriptions.map(sub => sub.unsubscribe());
     }
 
-    public submit() {
+    /**
+     * Emit uploaded files on submit
+     */
+    public submit(): void {
         this.submitUploadFiles.emit(this.droppedFilesSubject.getValue());
     }
 
+    /**
+     * Removes a file from the upload list
+     * @param file
+     */
     public removeFile(file: UploadedFile): void {
         const currentFiles = this.droppedFilesSubject.getValue();
         currentFiles.splice(currentFiles.indexOf(file), 1);
         this.droppedFilesSubject.next(currentFiles);
     }
 
+    /**
+     * Processes dropped files and checks for
+     * valid file-extensions
+     * @param files
+     */
     public fileDrop(files: NgxFileDropEntry[]): void {
         this.invalidExtensions = null;
         const fileExtensionErrors: string[] = [];
@@ -79,10 +97,20 @@ export class UploadComponent implements OnInit {
         }
     }
 
+    /**
+     * Sets the state of the drop zone
+     * @param isActive
+     */
     public setDropzoneState(isActive: boolean): void {
         this.dropZoneStateSubject.next(isActive);
     }
 
+    /**
+     * Transforms uploaded files to UploadedFile
+     * @param dropEntry
+     * @returns Promise<UploadedFile>
+     * @private
+     */
     private async transformEntry(dropEntry: NgxFileDropEntry): Promise<UploadedFile> {
         let nativeFile: File;
 
@@ -100,6 +128,12 @@ export class UploadComponent implements OnInit {
         });
     }
 
+    /**
+     * Takes a fileEntry and returns the native file
+     * @param fileEntry
+     * @returns Promise<File>
+     * @private
+     */
     private async getNativeFile(fileEntry: FileSystemFileEntry): Promise<File> {
         return new Promise(resolve => {
             (fileEntry as FileSystemFileEntry).file((file: File) => {
