@@ -32,6 +32,30 @@ const mockDropEntry = {
     } as unknown as FileSystemFileEntry,
 } as NgxFileDropEntry;
 
+const mockIncorrectFile: UploadedFile = {
+    name: 'bar.foo',
+    relativePath: 'bar.foo',
+    allowedSize: true,
+    size: 1024,
+    type: 'foo',
+    file: {
+        size: 1024,
+    } as File,
+};
+
+const mockIncorrectDropEntry = {
+    relativePath: 'bar.foo',
+    fileEntry: {
+        isDirectory: false,
+        isFile: true,
+        name: 'bar.foo',
+        file: callback =>
+            callback({
+                size: 1024,
+            }),
+    } as unknown as FileSystemFileEntry,
+} as NgxFileDropEntry;
+
 describe('UploadComponent', () => {
     let spectator: Spectator<UploadComponent>;
     const createComponent = createComponentFactory({
@@ -80,5 +104,27 @@ describe('UploadComponent', () => {
         spectator.component.droppedFiles$.pipe(take(1)).subscribe(files => {
             expect(files).toEqual([mockFile]);
         });
+    }));
+
+    it('should return warnings for unsupported file-types', fakeAsync(() => {
+        spectator.component.fileDrop([mockIncorrectDropEntry]);
+
+        tick();
+
+        spectator.component.droppedFiles$.pipe(take(1)).subscribe(files => {
+            expect(spectator.component.invalidExtensions).toBe('Files with the extentions: .foo are not allowed.');
+        });
+    }));
+
+    it('should emit the uploaded files on submit', fakeAsync(() => {
+        const emitSpy = spyOn<any>(spectator.component.submitUploadFiles, 'emit');
+
+        spectator.component.fileDrop([mockDropEntry, { ...mockDropEntry }]);
+
+        tick();
+
+        spectator.component.submit();
+
+        expect(emitSpy).toHaveBeenCalledWith([mockFile, mockFile]);
     }));
 });
