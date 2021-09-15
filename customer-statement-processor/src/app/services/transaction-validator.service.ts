@@ -7,6 +7,13 @@ import {ValidationResultsInterface} from "../models/validation-results.interface
     providedIn: 'root'
 })
 export class TransactionValidatorService {
+
+    /**
+     * Takes an array of TransactionInterface and checks if there are no
+     * duplicate references and if the end-balance is correctly calculated.
+     * @param data
+     * @returns Observable of ValidationResultsInterface
+     */
     public validate(data: TransactionInterface[]): Observable<ValidationResultsInterface> {
         const lookupReference = data.reduce((a: {}, e: TransactionInterface) => {
             a[e.Reference] = ++a[e.Reference] || 0;
