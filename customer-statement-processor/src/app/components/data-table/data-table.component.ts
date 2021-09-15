@@ -1,4 +1,5 @@
 import {ChangeDetectionStrategy, Component, Input, OnInit} from '@angular/core';
+import {TransactionInterface} from "../../models/transaction.interface";
 
 @Component({
     selector: 'data-table',
@@ -8,7 +9,7 @@ import {ChangeDetectionStrategy, Component, Input, OnInit} from '@angular/core';
 
 export class DataTableComponent {
     @Input()
-    datasource: any;
+    datasource: TransactionInterface[];
 
     @Input()
     displayedColumns: string[];
