@@ -22,4 +22,9 @@ describe('ReadableBytesize pipe', () => {
         const result = pipe.transform(1073741824);
         expect(result).toEqual('1 GB');
     });
+
+    it('should return 0KB when no bites provided', () => {
+        const result = pipe.transform(null);
+        expect(result).toEqual('0 KB');
+    });
 });
